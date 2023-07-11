@@ -30,20 +30,36 @@ void my_printf(char* specification, ...){
         if(*specification == '%'){
             specification++;
             switch(*specification){
-                case 'doux':{
+                case 'd':{
+                    int argument = va_copy(args, int);
+                    write(STDOUT_FILENO, argument, 1);
+                    break;
+                }
+                case 'o':{
+                    unsigned char argument = va_copy(args, unsigned char);
+                    break;
+                }
+                case 'u':{
+                    int argument = va_copy(args, int);
+                    break;
+                }
+                case 'x':{
                     int argument = va_copy(args, int);
                     break;
                 }
                 case 'c':{
                     char argument = (char)va_copy(args, int);
+                    write(STDOUT_FILENO, &argument, 1);
                     break;
                 }
                 case 's':{
                     char* argument = va_copy(args, char*);
+                    write(STDOUT_FILENO, argument, strlen(argument));
                     break;
                 }
                 case 'p':{
-                    void argument = va_copy(args, void); ???
+                    void argument = va_copy(args, void);
+                    write(int __fd, argument, size_t __n);
                     break;
                 }
             }
