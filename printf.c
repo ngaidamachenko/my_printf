@@ -11,6 +11,8 @@
       Characters from the array are written up to (but not including) a terminating NUL character.
     p The void * pointer argument is printed in hexadecimal.
 5. Malloc
+
+Try using itoa to convert intergers into a string
 */
 #include <string.h>
 #include <unistd.h>
