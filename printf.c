@@ -15,6 +15,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include <stdint.h>
 
 #include "my_printf.h"
 
@@ -36,15 +37,15 @@ void my_printf(char* specification, ...){
                     break;
                 }
                 case 'o':{
-                    unsigned char argument = va_copy(args, unsigned char);
+                    unsigned int argument = va_copy(args, unsigned int);
                     break;
                 }
                 case 'u':{
-                    int argument = va_copy(args, int);
+                    unsigned int argument = va_copy(args, unsigned int);
                     break;
                 }
                 case 'x':{
-                    int argument = va_copy(args, int);
+                    unsigned int argument = va_copy(args, unsigned int);
                     break;
                 }
                 case 'c':{
@@ -58,12 +59,17 @@ void my_printf(char* specification, ...){
                     break;
                 }
                 case 'p':{
-                    void argument = va_copy(args, void);
-                    write(int __fd, argument, size_t __n);
+                    void* argument = va_copy(args, void*);
+                    write(STDOUT_FILENO, argument, strlen(argument));
                     break;
                 }
+                default:{
+                    write(STDOUT_FILENO, specification, 1);
+                }
             }
-            my_putchar(*specification);
+        }
+        else{
+            write(STDOUT_FILENO, specification, 1);
         }
         specification++;
     }
