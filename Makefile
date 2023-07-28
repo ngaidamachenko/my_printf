@@ -1,7 +1,6 @@
 #macro definitions
 TARGET = my_printf
-FILES = code_generator input_validation matched_and_misplaced \
-        game_code main
+FILES = my_putstr reverse_string my_itoa printf
 CFLAGS = -Wall -Wextra -Werror
 
 # adds .c file extension

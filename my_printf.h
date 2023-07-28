@@ -6,11 +6,9 @@
 #include <stdarg.h>
 #include <stdint.h>
 
-
 void reverse_string(char* str); // we don't need to return it
 void my_putchar(char c);
 void my_putstr(char* str);
-char* my_strcpy(char* dest, char* source);
 void my_signed_decimal(int nbr);
 void my_unsigned_decimal(unsigned int nbr);
 void my_unsigned_oct(unsigned int nbr);

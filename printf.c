@@ -24,46 +24,49 @@ void my_printf(char* specification, ...){
         if(*specification == '%'){
             specification++;
             switch(*specification){
-                case 'd':{
+                case 'd': {
                     int argument = va_copy(args, int); // need to convert doux from int into a string
-                    write(STDOUT_FILENO, argument, 1);
+                    my_signed_decimal(argument);
                     break;
                 }
-                case 'o':{
-                    unsigned int argument = va_copy(args, unsigned int);
-
+                case 'o': {
+                    unsigned int argument = va_arg(args, unsigned int);
+                    my_unsigned_oct(argument);
                     break;
                 }
-                case 'u':{
-                    unsigned int argument = va_copy(args, unsigned int);
+                case 'u': {
+                    unsigned int argument = va_arg(args, unsigned int);
+                    my_unsigned_decimal(argument);
                     break;
                 }
-                case 'x':{
-                    unsigned int argument = va_copy(args, unsigned int);
+                case 'x': {
+                    unsigned int argument = va_arg(args, unsigned int);
+                    my_unsigned_hex(argument);
                     break;
                 }
-                case 'c':{
-                    char argument = (char)va_copy(args, int);
-                    write(STDOUT_FILENO, &argument, 1);
+                case 'c': {
+                    char argument = (char)va_arg(args, int);
+                    my_putchar(argument);
                     break;
                 }
-                case 's':{
-                    char* argument = va_copy(args, char*);
-                    write(STDOUT_FILENO, argument, strlen(argument));
+                case 's': {
+                    char* argument = va_arg(args, char*);
+                    my_putstr(argument);
                     break;
                 }
-                case 'p':{
-                    void* argument = va_copy(args, void*);
-                    write(STDOUT_FILENO, argument, strlen(argument));
+                case 'p': {
+                    void* argument = va_arg(args, void*);
+                    my_putstr("0x"); // to indicate that it's a hex representation of a pointer
+                    my_unsigned_hex((unsigned int)argument);
                     break;
                 }
                 default:{
-                    write(STDOUT_FILENO, specification, 1);
+                    my_putchar(*specification);
                 }
             }
         }
         else{
-            write(STDOUT_FILENO, specification, 1);
+            my_putchar(*specification);
         }
         specification++;
     }
