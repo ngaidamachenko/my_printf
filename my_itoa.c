@@ -16,7 +16,7 @@ void my_signed_decimal(int nbr){ //signed decimal | same as %i
         nbr /= 10;
     }
     reverse_string(buffer);
-    my_putstr(nbr);
+    my_putstr(buffer);
 }
 
 void my_unsgined_decimal(unsigned int nbr){ //unsigned decimal
@@ -27,7 +27,7 @@ void my_unsgined_decimal(unsigned int nbr){ //unsigned decimal
         my_putchar('0'); 
         return;
     }
-    while(nbr>0){
+    while(nbr > 0){
         buffer[index++] = '0' + (nbr % 10); //decimal base uses 10 as its represenation | [i++] because we iterate each index within the buffer
         nbr /= 10; //nbr equals to assigned number divided by the decimal base
     }
