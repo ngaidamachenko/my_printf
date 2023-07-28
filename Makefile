@@ -1,6 +1,6 @@
 #macro definitions
 TARGET = my_printf
-FILES = my_putstr reverse_string my_itoa printf main
+FILES = my_putstr reverse_string my_itoa my_printf main
 CFLAGS = -Wall -Wextra -Werror
 
 # adds .c file extension
