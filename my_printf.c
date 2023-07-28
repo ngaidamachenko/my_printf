@@ -14,10 +14,6 @@
 
 Try using itoa to convert intergers into a string
 */
-#include <string.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdint.h>
 
 #include "my_printf.h"
 
@@ -35,6 +31,7 @@ void my_printf(char* specification, ...){
                 }
                 case 'o':{
                     unsigned int argument = va_copy(args, unsigned int);
+
                     break;
                 }
                 case 'u':{
@@ -43,10 +40,6 @@ void my_printf(char* specification, ...){
                 }
                 case 'x':{
                     unsigned int argument = va_copy(args, unsigned int);
-                    break;
-                }
-                case 'i':{
-                    ;
                     break;
                 }
                 case 'c':{
@@ -64,7 +57,6 @@ void my_printf(char* specification, ...){
                     write(STDOUT_FILENO, argument, strlen(argument));
                     break;
                 }
-
                 default:{
                     write(STDOUT_FILENO, specification, 1);
                 }
