@@ -21,11 +21,6 @@ Try using itoa to convert intergers into a string
 
 #include "my_printf.h"
 
-void my_putchar(char c) {
-    write(1, &c, 1);
-}
-
-
 void my_printf(char* specification, ...){
     va_list args;
     va_start(args, specification);
@@ -34,7 +29,7 @@ void my_printf(char* specification, ...){
             specification++;
             switch(*specification){
                 case 'd':{
-                    int argument = va_copy(args, int);
+                    int argument = va_copy(args, int); // need to convert doux from int into a string
                     write(STDOUT_FILENO, argument, 1);
                     break;
                 }
@@ -48,6 +43,10 @@ void my_printf(char* specification, ...){
                 }
                 case 'x':{
                     unsigned int argument = va_copy(args, unsigned int);
+                    break;
+                }
+                case 'i':{
+                    ;
                     break;
                 }
                 case 'c':{
@@ -65,6 +64,7 @@ void my_printf(char* specification, ...){
                     write(STDOUT_FILENO, argument, strlen(argument));
                     break;
                 }
+
                 default:{
                     write(STDOUT_FILENO, specification, 1);
                 }

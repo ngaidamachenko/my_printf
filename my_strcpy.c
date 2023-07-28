@@ -1,3 +1,5 @@
+#include "my_printf.h"
+
 char* my_strcpy(char* dest, char* source){
     int i = 0;
     while (source[i]){ //while source[i] exists
