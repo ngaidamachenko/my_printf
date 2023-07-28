@@ -4,7 +4,7 @@ void my_signed_decimal(int nbr){ //signed decimal | same as %i
     char buffer[32]; //size is 32 as it fits with all bases as well as 32 and 64 bit
     int index = 0;
     if(nbr == 0){
-        my_putchar('0');
+        my_putchar("0");
         return;
         }
     else if (nbr < 0){

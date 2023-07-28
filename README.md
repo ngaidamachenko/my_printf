@@ -2,7 +2,8 @@
 ***
 
 ## Task
-TODO - What is the problem? And where is the challenge?
+The task is to implement a simplified version of the printf function in C, called my_printf, 
+that can handle format specifiers for integers, strings, characters, and pointers.
 
 ## Description
 TODO - How have you solved the problem?

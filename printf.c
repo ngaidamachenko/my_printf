@@ -25,7 +25,7 @@ void my_printf(char* specification, ...){
             specification++;
             switch(*specification){
                 case 'd': {
-                    int argument = va_copy(args, int); // need to convert doux from int into a string
+                    int argument = va_arg(args, int); // need to convert doux from int into a string
                     my_signed_decimal(argument);
                     break;
                 }
@@ -57,7 +57,7 @@ void my_printf(char* specification, ...){
                 case 'p': {
                     void* argument = va_arg(args, void*);
                     my_putstr("0x"); // to indicate that it's a hex representation of a pointer
-                    my_unsigned_hex((unsigned int)argument);
+                    my_unsigned_hex((unsigned long int)argument);
                     break;
                 }
                 default:{
