@@ -4,7 +4,7 @@ void my_signed_decimal(int nbr){ //signed decimal | same as %i
     char buffer[32]; //size is 32 as it fits with all bases as well as 32 and 64 bit
     int index = 0;
     if(nbr == 0){
-        my_putchar("0");
+        my_putchar('0');
         return;
         }
     else if (nbr < 0){
@@ -24,7 +24,7 @@ void my_unsgined_decimal(unsigned int nbr){ //unsigned decimal
     int index = 0;
 
     if(nbr == 0){
-        my_putchar("0"); 
+        my_putchar('0'); 
         return;
     }
     while(nbr>0){
@@ -42,7 +42,7 @@ void my_unsigned_oct(unsigned int nbr){ //unsigned octal
     int index = 0;
 
     if(nbr == 0){
-        my_putchar("0"); 
+        my_putchar('0'); 
         return;
     }
     while(nbr>0){
@@ -60,7 +60,7 @@ void my_unsigned_hex(unsigned int nbr){ //unsigned hexadecimal
     int index = 0;
 
     if(nbr == 0){
-        my_putchar("0"); 
+        my_putchar('0'); 
         return;
     }
     while(nbr>0){
@@ -85,7 +85,7 @@ void my_signed_bin(unsigned int nbr){ //binary
     int index = 0;
 
     if(nbr == 0){
-        my_putchar("0"); 
+        my_putchar('0'); 
         return;
     }
     while(nbr>0){
