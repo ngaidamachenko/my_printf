@@ -19,7 +19,7 @@ void my_signed_decimal(int nbr){ //signed decimal | same as %i
     my_putstr(buffer);
 }
 
-void my_unsgined_decimal(unsigned int nbr){ //unsigned decimal
+void my_unsigned_decimal(unsigned int nbr){ //unsigned decimal
     char buffer[32];
     int index = 0;
 
