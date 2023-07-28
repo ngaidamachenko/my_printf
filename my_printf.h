@@ -14,5 +14,6 @@ void my_unsigned_decimal(unsigned int nbr);
 void my_unsigned_oct(unsigned int nbr);
 void my_unsigned_hex(unsigned int nbr);
 void my_signed_bin(unsigned int nbr);
+void my_printf(char* specification, ...);
 
 #endif /* MY_PRINTF_H */
