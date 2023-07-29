@@ -2,6 +2,7 @@
 TARGET = my_printf
 FILES = my_putstr reverse_string my_itoa my_printf main
 CFLAGS = -Wall -Wextra -Werror
+HEADERS = my_printf.h
 
 # adds .c file extension
 SRC = $(addsuffix .c,$(FILES))
