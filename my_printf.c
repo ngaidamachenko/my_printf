@@ -1,25 +1,8 @@
-/* what am i supposed to do ?! :(
-1. Push function output to stdout
-2. Function to specify how subsequent arguments are converted for output 
-- Google variable-length argument facilities of stdarg(3))
-- What's a format string?
-3. my_cpy to copy characters unchanged directly to the output
-4. Conversion specification (PERCENTAGE):
-    doux The int (or appropriate variant) argument is converted to signed decimal (d). unsigned octal (o), unsigned decimal (u), unsigned hexadecimal (x).
-    c The int argument is converted to an unsigned char, and the resulting character is written.
-    s The char * argument is expected to be a pointer to an array of character type (pointer to a string). 
-      Characters from the array are written up to (but not including) a terminating NUL character.
-    p The void * pointer argument is printed in hexadecimal.
-5. Malloc
-
-Try using itoa to convert intergers into a string
-*/
-
-
 #include <string.h>
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <ctype.h> //for tolower()
 
 
 void reverse_string(char* str){
@@ -49,6 +32,7 @@ int my_signed_decimal(int nbr){ //signed decimal | same as %i
     if(nbr == 0){
         my_putchar('0');
         count = 1;
+        return 1; //if dont return it will not print 0 but a string of 0 followed by first %d
     }
     else if (nbr < 0){
         nbr = -nbr;
@@ -125,7 +109,6 @@ int my_unsigned_hex(unsigned long int nbr){ //unsigned hexadecimal
         else{
             buffer[index++] = 'A' + digit - 10; //'A' represents 10 in ASCII table. We subract 10 to adjust for the calculated ASCII value 
         }
-        break;
         nbr /= 16; //nbr equals to assigned number divided by the decimal base
     }
     buffer[index] = '\0';//to account for null character
@@ -200,7 +183,7 @@ int my_printf(char* specification, ...){
                 case 'p': {
                     void* argument = va_arg(args, void*);
                     my_putstr("0x"); // to indicate that it's a hex representation of a pointer
-                    total_chars += my_unsigned_hex((unsigned long int)argument);
+                    total_chars += my_unsigned_hex((unsigned long int)(uintptr_t)argument);
                     break;
                 }
                 default:{
