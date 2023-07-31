@@ -41,87 +41,99 @@ void my_putstr(char* c) {
     write(1,c,strlen(c));
 }
 
-void my_signed_decimal(int nbr){ //signed decimal | same as %i
+int my_signed_decimal(int nbr){ //signed decimal | same as %i
     char buffer[32]; //size is 32 as it fits with all bases as well as 32 and 64 bit
     int index = 0;
+    int count = 0;
     if(nbr == 0){
         my_putchar('0');
-        return;
+        count = 1;
         }
     else if (nbr < 0){
         nbr = -nbr;
         buffer[index++] = '-';
+        count++;
     }
     while (nbr > 0){
         buffer[index++] = '0' + (nbr % 10);
         nbr /= 10;
+        count++;
     }
     reverse_string(buffer);
     my_putstr(buffer);
+    return count;
 }
 
-void my_unsigned_decimal(unsigned int nbr){ //unsigned decimal
+int my_unsigned_decimal(unsigned int nbr){ //unsigned decimal
     char buffer[32];
     int index = 0;
+    int count  = 0;
 
     if(nbr == 0){
         my_putchar('0'); 
-        return;
+        count = 1;
     }
     while(nbr > 0){
         buffer[index++] = '0' + (nbr % 10); //decimal base uses 10 as its represenation | [i++] because we iterate each index within the buffer
         nbr /= 10; //nbr equals to assigned number divided by the decimal base
+        count ++;
     }
     buffer[index] = '\0';//to account for null character
     reverse_string(buffer);
     my_putstr(buffer);
+    return count; 
 }
 
 
-void my_unsigned_oct(unsigned int nbr){ //unsigned octal
+int my_unsigned_oct(unsigned int nbr){ //unsigned octal
     char buffer[32];
     int index = 0;
+    int count = 0;
 
     if(nbr == 0){
         my_putchar('0'); 
-        return;
+        count = 1;
     }
     while(nbr>0){
         buffer[index++] = '0' + (nbr % 8); //octal base uses 8 as its represenation | [i++] because we iterate each index within the buffer
         nbr /= 8; //nbr equals to assigned number divided by the decimal base
+        count++;
     }
     buffer[index] = '\0';//to account for null character
     reverse_string(buffer);
     my_putstr(buffer);
+    return count;
 }
 
 
-void my_unsigned_hex(unsigned int nbr){ //unsigned hexadecimal
+int my_unsigned_hex(unsigned long int nbr){ //unsigned hexadecimal
     char buffer[32];
-    int index = 0;
+    size_t index = 0;
+    long int count = 0;
 
     if(nbr == 0){
         my_putchar('0'); 
-        return;
+        count = 1;
     }
     while(nbr>0){
         int digit = nbr % 16; //extracting a single hex digit from the nbr 
+        count++;
         if (digit < 10){
             buffer[index++] = '0' + digit; //hexadecimal base uses number 0-9 for its represenation in numbers and A-F for its representation in letters| [i++] because we iterate each index within the buffer
         }
         else{
-            buffer[index++] = 'A' + digit - 10; //'A' represents 10 in ASCII table. We subract 10 to adjust for the calculated ASCII value 
+            buffer[index++] = 'a' + digit - 10; //'A' represents 10 in ASCII table. We subract 10 to adjust for the calculated ASCII value 
         }
-        
         nbr /= 16; //nbr equals to assigned number divided by the decimal base
     }
     buffer[index] = '\0';//to account for null character
     reverse_string(buffer);
     my_putstr(buffer);
+    return count;
 }
 
 
-void my_signed_bin(unsigned int nbr){ //binary 
+/*void my_signed_bin(unsigned int nbr){ //binary 
     char buffer[32];
     int index = 0;
 
@@ -136,7 +148,7 @@ void my_signed_bin(unsigned int nbr){ //binary
     buffer[index] = '\0';//to account for null character
     reverse_string(buffer);
     my_putstr(buffer);
-}
+}*/
 
 int my_printf(char* specification, ...){
     va_list args;
@@ -148,26 +160,22 @@ int my_printf(char* specification, ...){
             switch(*specification){
                 case 'd': {
                     int argument = va_arg(args, int); // need to convert doux from int into a string
-                    my_signed_decimal(argument);
-                    total_chars ++;
+                    total_chars += my_signed_decimal(argument);
                     break;
                 }
                 case 'o': {
                     unsigned int argument = va_arg(args, unsigned int);
-                    my_unsigned_oct(argument);
-                    total_chars ++;
+                    total_chars += my_unsigned_oct(argument);
                     break;
                 }
                 case 'u': {
                     unsigned int argument = va_arg(args, unsigned int);
-                    my_unsigned_decimal(argument);
-                    total_chars ++;
+                    total_chars += my_unsigned_decimal(argument);
                     break;
                 }
                 case 'x': {
                     unsigned int argument = va_arg(args, unsigned int);
-                    my_unsigned_hex(argument);
-                    total_chars ++;
+                    total_chars += my_unsigned_hex(argument);
                     break;
                 }
                 case 'c': {
@@ -178,15 +186,20 @@ int my_printf(char* specification, ...){
                 }
                 case 's': {
                     char* argument = va_arg(args, char*);
-                    my_putstr(argument);
-                    total_chars += strlen(argument);
+                    if(argument != NULL){
+                        my_putstr(argument);
+                        total_chars += strlen(argument);}
+                    else{
+                        my_putstr("(null)");
+                        total_chars += 6;
+                    }
+                        
                     break;
                 }
                 case 'p': {
                     void* argument = va_arg(args, void*);
                     my_putstr("0x"); // to indicate that it's a hex representation of a pointer
-                    my_unsigned_hex((unsigned long int)argument);
-                    total_chars += strlen(argument);
+                    total_chars += my_unsigned_hex((unsigned long int)argument);
                     break;
                 }
                 default:{
