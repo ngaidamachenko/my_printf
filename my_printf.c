@@ -28,6 +28,7 @@ int my_signed_decimal(int nbr){ //signed decimal | same as %i
     char buffer[32]; //size is 32 as it fits with all bases as well as 32 and 64 bit
     int index = 0;
     int count = 0;
+    //int is_negative = 1;
 
     if(nbr == 0){
         my_putchar('0');
@@ -37,6 +38,7 @@ int my_signed_decimal(int nbr){ //signed decimal | same as %i
     else if (nbr < 0){
         nbr = -nbr;
         buffer[index++] = '-';
+       // is_negative = 1;
         count++;
     }
     while (nbr > 0){
@@ -44,6 +46,9 @@ int my_signed_decimal(int nbr){ //signed decimal | same as %i
         nbr /= 10;
         count++;
     }
+    //if (is_negative == 1) {
+    //    buffer[index++] = '-';
+    //}
     reverse_string(buffer);
     my_putstr(buffer);
     return count;
