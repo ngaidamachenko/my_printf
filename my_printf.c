@@ -45,10 +45,11 @@ int my_signed_decimal(int nbr){ //signed decimal | same as %i
     char buffer[32]; //size is 32 as it fits with all bases as well as 32 and 64 bit
     int index = 0;
     int count = 0;
+
     if(nbr == 0){
         my_putchar('0');
         count = 1;
-        }
+    }
     else if (nbr < 0){
         nbr = -nbr;
         buffer[index++] = '-';
@@ -109,7 +110,7 @@ int my_unsigned_oct(unsigned int nbr){ //unsigned octal
 int my_unsigned_hex(unsigned long int nbr){ //unsigned hexadecimal
     char buffer[32];
     size_t index = 0;
-    long int count = 0;
+    int count = 0;
 
     if(nbr == 0){
         my_putchar('0'); 
@@ -122,8 +123,9 @@ int my_unsigned_hex(unsigned long int nbr){ //unsigned hexadecimal
             buffer[index++] = '0' + digit; //hexadecimal base uses number 0-9 for its represenation in numbers and A-F for its representation in letters| [i++] because we iterate each index within the buffer
         }
         else{
-            buffer[index++] = 'a' + digit - 10; //'A' represents 10 in ASCII table. We subract 10 to adjust for the calculated ASCII value 
+            buffer[index++] = 'A' + digit - 10; //'A' represents 10 in ASCII table. We subract 10 to adjust for the calculated ASCII value 
         }
+        break;
         nbr /= 16; //nbr equals to assigned number divided by the decimal base
     }
     buffer[index] = '\0';//to account for null character
@@ -193,7 +195,6 @@ int my_printf(char* specification, ...){
                         my_putstr("(null)");
                         total_chars += 6;
                     }
-                        
                     break;
                 }
                 case 'p': {
