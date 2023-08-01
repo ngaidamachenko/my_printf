@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdint.h>
-#include <ctype.h> //for tolower()
 
 
 void reverse_string(char* str){
@@ -28,17 +27,14 @@ int my_signed_decimal(int nbr){ //signed decimal | same as %i
     char buffer[32]; //size is 32 as it fits with all bases as well as 32 and 64 bit
     int index = 0;
     int count = 0;
-    //int is_negative = 1;
 
     if(nbr == 0){
         my_putchar('0');
         count = 1;
-        return 1; //if dont return it will not print 0 but a string of 0 followed by first %d
     }
     else if (nbr < 0){
         nbr = -nbr;
         buffer[index++] = '-';
-       // is_negative = 1;
         count++;
     }
     while (nbr > 0){
@@ -46,9 +42,6 @@ int my_signed_decimal(int nbr){ //signed decimal | same as %i
         nbr /= 10;
         count++;
     }
-    //if (is_negative == 1) {
-    //    buffer[index++] = '-';
-    //}
     reverse_string(buffer);
     my_putstr(buffer);
     return count;
@@ -122,6 +115,36 @@ int my_unsigned_hex(unsigned long int nbr){ //unsigned hexadecimal
     return count;
 }
 
+int my_unsigned_hex_ptr(unsigned long int nbr){ //unsigned hexadecimal
+    char buffer[32];
+    size_t index = 0;
+    int count = 0;
+
+    if (nbr == 0) {
+        my_putchar('0');
+        count = 1;
+        return count;
+    }
+    
+    while (nbr > 0) {
+        int digit = nbr % 16;
+        count++;
+        if (digit < 10) {
+            buffer[index++] = '0' + digit;
+        } else {
+            buffer[index++] = 'a' + digit - 10;
+        }
+        nbr /= 16;
+    }
+
+    buffer[index++] = 'x';
+    buffer[index++] = '0';
+    buffer[index] = '\0';
+    reverse_string(buffer);
+    my_putstr(buffer);
+    return count + 2; // +2 for the "0x" prefix
+}
+
 
 /*void my_signed_bin(unsigned int nbr){ //binary 
     char buffer[32];
@@ -187,8 +210,8 @@ int my_printf(char* specification, ...){
                 }
                 case 'p': {
                     void* argument = va_arg(args, void*);
-                    my_putstr("0x"); // to indicate that it's a hex representation of a pointer
-                    total_chars += my_unsigned_hex((unsigned long int)(uintptr_t)argument);
+                    //my_putstr("0x"); // to indicate that it's a hex representation of a pointer
+                    total_chars += my_unsigned_hex_ptr((unsigned long int)(uintptr_t)argument);
                     break;
                 }
                 default:{
