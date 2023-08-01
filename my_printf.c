@@ -31,10 +31,11 @@ int my_signed_decimal(int nbr){ //signed decimal | same as %i
     if(nbr == 0){
         my_putchar('0');
         count = 1;
+        return count;
     }
     else if (nbr < 0){
         nbr = -nbr;
-        buffer[index++] = '-';
+        my_putchar('-');
         count++;
     }
     while (nbr > 0){
