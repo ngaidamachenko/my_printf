@@ -6,14 +6,14 @@
 #include <stdarg.h>
 #include <stdint.h>
 
-void reverse_string(char* str); // we don't need to return it
+void reverse_string(char* str);
 void my_putchar(char c);
-void my_putstr(char* str);
-void my_signed_decimal(int nbr);
-void my_unsigned_decimal(unsigned int nbr);
-void my_unsigned_oct(unsigned int nbr);
-void my_unsigned_hex(unsigned int nbr);
-void my_signed_bin(unsigned int nbr);
-void my_printf(char* specification, ...);
+void my_putstr(char* c);
+int my_signed_decimal(int nbr);
+int my_unsigned_decimal(unsigned int nbr);
+int my_unsigned_oct(unsigned int nbr);
+int my_unsigned_hex(unsigned long int nbr);
+int my_unsigned_hex_ptr(unsigned long int nbr);
+int my_printf(char* specification, ...);
 
-#endif /* MY_PRINTF_H */
+#endif // MY_PRINTF_H
