@@ -1,5 +1,6 @@
 # Welcome to My Printf
 ***
+In order to pass the tests all functions were moved under my_printf as the header file was not being linked for some reason.
 
 ## Task
 The task is to implement a simplified version of the printf function in C, called my_printf, 

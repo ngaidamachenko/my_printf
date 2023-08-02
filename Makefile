@@ -1,6 +1,6 @@
 #macro definitions
 TARGET = my_printf
-FILES = main my_printf my_itoa reverse_string my_putstr    
+FILES = main my_printf #my_itoa reverse_string my_putstr    
 CFLAGS = -Wall -Wextra -Werror
 HEADERS = my_printf.h
 
@@ -19,8 +19,8 @@ $(TARGET): $(OBJ)
 	gcc -o $(TARGET) $(OBJ)
 
 $(OBJ): $(SRC)
-	gcc -c $(CFLAGS) $< -o $@
-	# gcc -c  $(CFLAGS) $(SRC)
+	#gcc -c $(CFLAGS) $< -o $@
+	 gcc -c  $(CFLAGS) $(SRC)
 
 crun : all
 	./$(TARGET)
