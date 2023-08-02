@@ -19,7 +19,7 @@ $(TARGET): $(OBJ)
 	gcc -o $(TARGET) $(OBJ)
 
 $(OBJ): $(SRC)
-	gcc -c  $(CFLAGS) $(SRC)
+	gcc -c $(CFLAGS) $< -o $@
 
 crun : all
 	./$(TARGET)
