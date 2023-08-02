@@ -1,6 +1,6 @@
 #macro definitions
 TARGET = my_printf
-FILES = my_putstr reverse_string my_itoa my_printf main
+FILES = main my_printf my_itoa reverse_string my_putstr    
 CFLAGS = -Wall -Wextra -Werror
 HEADERS = my_printf.h
 
