@@ -17,4 +17,4 @@ int my_unsigned_hex_ptr(unsigned long int nbr);
 int my_printf(char* specification, ...);
 int main();
 
-#endif // MY_PRINTF_H
+#endif // MY_PRINT_H

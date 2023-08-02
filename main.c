@@ -1,7 +1,7 @@
 #include "my_printf.h"
 
 int main(){
-    int nbr = 65;
+   /* int nbr = 65;
     unsigned int unnbr = 0;
     unsigned int unnbr_1 = 15;
     unsigned int unnbr_2 = 48;
@@ -19,5 +19,5 @@ int main(){
     my_printf("String: %s\n", str);
     my_printf("The Holy Pointer: %p\n", ptr);
 
-    return 0;
+    return 0; */
 }
