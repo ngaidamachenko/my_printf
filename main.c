@@ -18,6 +18,6 @@ int main(){
     my_printf("Char: %c\n", c);
     my_printf("String: %s\n", str);
     my_printf("The Holy Pointer: %p\n", ptr);
-*/
-    return 0;
+
+    return 0; */
 }
